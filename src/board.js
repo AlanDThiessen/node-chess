@@ -3,7 +3,7 @@
 	the squares it contains.
 */
 import { Piece, PieceType, SideType } from './piece.js';
-import { EventEmitter } from 'events';
+import { EventIfc } from './eventsIfc.js';
 import { Square } from './square.js';
 
 // types
@@ -27,7 +27,7 @@ export var NeighborType = {
 };
 
 // ctor
-export class Board extends EventEmitter {
+export class Board extends EventIfc {
 	constructor (squares) {
 		super();
 

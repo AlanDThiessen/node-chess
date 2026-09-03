@@ -1,5 +1,5 @@
 /* eslint sort-imports: 0 */
-import { EventEmitter } from 'events';
+import { EventIfc } from './eventsIfc.js';
 import { Game } from './game.js';
 import { GameValidation } from './gameValidation.js';
 import { Piece } from './piece.js';
@@ -93,7 +93,7 @@ function notateUCI(validMoves) {
   return notation;
 }
 
-export class UCIGameClient extends EventEmitter {
+export class UCIGameClient extends EventIfc {
   constructor(game) {
     super();
 

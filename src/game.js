@@ -7,7 +7,7 @@
 */
 import base64 from 'crypto-js/enc-base64.js'
 import { Board } from './board.js';
-import { EventEmitter } from 'events';
+import { EventIfc } from './eventsIfc.js';
 import md5 from 'crypto-js/md5.js';
 import { SideType } from './piece.js';
 
@@ -54,7 +54,7 @@ function removeFromHistory (game) {
 	};
 }
 
-export class Game extends EventEmitter {
+export class Game extends EventIfc {
 	constructor (board) {
 		super();
 

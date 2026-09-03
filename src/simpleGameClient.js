@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { EventIfc } from './eventsIfc.js';
 import { Game } from './game.js';
 import { GameValidation } from './gameValidation.js';
 import { Piece } from './piece.js';
@@ -46,7 +46,7 @@ function updateGameClient (gameClient) {
 }
 
 // ctor
-export class SimpleGameClient extends EventEmitter {
+export class SimpleGameClient extends EventIfc {
 	constructor (game) {
 		super();
 

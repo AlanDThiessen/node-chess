@@ -1,5 +1,5 @@
 /* eslint sort-imports: 0 */
-import { EventEmitter } from 'events';
+import { EventIfc } from './eventsIfc.js';
 import { Board } from './board.js';
 import { Game } from './game.js';
 import { GameValidation } from './gameValidation.js';
@@ -211,7 +211,7 @@ function updateGameClient (gameClient) {
 	});
 }
 
-export class AlgebraicGameClient extends EventEmitter {
+export class AlgebraicGameClient extends EventIfc {
 	constructor (game, opts) {
 		super();
 
