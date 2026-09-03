@@ -32,4 +32,8 @@ describe('main entry', () => {
     assert.strictEqual(typeof createUCI, 'function');
     assert.strictEqual(typeof chess.createUCI, 'function');
   });
+
+  it('named and default export should expose setEventImpl', () => {
+    assert.strictEqual(typeof chess.setEventImpl, 'function');
+  });
 });
