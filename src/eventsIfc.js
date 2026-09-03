@@ -7,10 +7,14 @@ import { EventEmitter } from 'events';
 
 
 export class EventIfc {
-    constructor (eventImpl = EventEmitter) {
+    constructor (eventImpl = null) {
         this.events = null;
 
-        if (eventImpl) {
+        if ((eventImpl === null) && (EventEmitter)) {
+            eventImpl = EventEmitter;
+        }
+
+        if (eventImpl !== null) {
             this.events = new EventEmitter();
         }
     }

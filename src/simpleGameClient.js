@@ -47,8 +47,8 @@ function updateGameClient (gameClient) {
 
 // ctor
 export class SimpleGameClient extends EventIfc {
-	constructor (game) {
-		super();
+	constructor (game, eventImpl = null) {
+		super(eventImpl);
 
 		this.isCheck = false;
 		this.isCheckmate = false;
@@ -68,10 +68,10 @@ export class SimpleGameClient extends EventIfc {
 		});
 	}
 
-	static create () {
+	static create (eventImpl = null) {
 		let
-			game = Game.create(),
-			gameClient = new SimpleGameClient(game);
+			game = Game.create(eventImpl),
+			gameClient = new SimpleGameClient(game, eventImpl);
 
 		updateGameClient(gameClient);
 

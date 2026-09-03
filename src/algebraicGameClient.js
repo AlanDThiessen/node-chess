@@ -212,8 +212,8 @@ function updateGameClient (gameClient) {
 }
 
 export class AlgebraicGameClient extends EventIfc {
-	constructor (game, opts) {
-		super();
+	constructor (game, opts, eventImpl = null) {
+		super(eventImpl);
 
 		this.game = game;
 		this.isCheck = false;
@@ -244,25 +244,25 @@ export class AlgebraicGameClient extends EventIfc {
 		});
 	}
 
-	static create (opts) {
+	static create (opts, eventImpl = null) {
 		let
-			game = Game.create(),
-			gameClient = new AlgebraicGameClient(game, opts);
+			game = Game.create(eventImpl),
+			gameClient = new AlgebraicGameClient(game, opts, eventImpl);
 
 		updateGameClient(gameClient);
 
 		return gameClient;
 	}
 
-	static fromFEN (fen, opts) {
+	static fromFEN (fen, opts, eventImpl = null) {
 		if (!fen || typeof fen !== 'string') {
 			throw new Error('FEN must be a non-empty string');
 		}
 
 		// create a standard game so listeners/history are wired
 		let 
-			game = Game.create(),
-			loadedBoard = Board.load(fen);
+			game = Game.create(eventImpl),
+			loadedBoard = Board.load(fen, eventImpl);
 
 		// copy piece placement from loaded board to preserve board indexing and listeners
 		for (let i = 0; i < game.board.squares.length; i++) {

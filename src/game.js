@@ -55,18 +55,18 @@ function removeFromHistory (game) {
 }
 
 export class Game extends EventIfc {
-	constructor (board) {
-		super();
+	constructor (board, eventImpl = null) {
+		super(eventImpl);
 
 		this.board = board;
 		this.captureHistory = [];
 		this.moveHistory = [];
 	}
 
-	static create () {
+	static create (eventImpl = null) {
 		let
-			board = Board.create(),
-			game = new Game(board);
+			board = Board.create(eventImpl),
+			game = new Game(board, eventImpl);
 
 		// handle move and promotion events correctly
 		board.on('move', (ev) => {
@@ -116,10 +116,10 @@ export class Game extends EventIfc {
 		return base64.stringify(digest);
 	}
 
-	static load (moveHistory) {
+	static load (moveHistory, eventImpl = null) {
 		let
-			board = Board.create(),
-			game = new Game(board),
+			board = Board.create(eventImpl),
+			game = new Game(board, eventImpl),
 			i = 0;
 
 		// handle move and promotion events correctly

@@ -28,15 +28,15 @@ export var NeighborType = {
 
 // ctor
 export class Board extends EventIfc {
-	constructor (squares) {
-		super();
+	constructor (squares, eventImpl = null) {
+		super(eventImpl);
 
 		this.squares = squares;
 	}
 
-	static create () {
+	static create (eventImpl = null) {
 		let
-			b = new Board([]),
+			b = new Board([], eventImpl),
 			f = 0,
 			i = 0,
 			r = 0,
@@ -82,7 +82,7 @@ export class Board extends EventIfc {
 		return b;
 	}
 
-	static load (fen) {
+	static load (fen, eventImpl = null) {
 		/* eslint sort-keys: 0 */
 		const pieces = {
 			b: { arg: SideType.Black, method: 'createBishop' },
@@ -124,7 +124,7 @@ export class Board extends EventIfc {
 		return new Board(lines.reduce((acc, cur) => {
 			acc.push(...cur);
 			return acc;
-		}, []));
+		}, []), eventImpl);
 	}
 
 	getFen () {

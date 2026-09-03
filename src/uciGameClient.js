@@ -94,8 +94,8 @@ function notateUCI(validMoves) {
 }
 
 export class UCIGameClient extends EventIfc {
-  constructor(game) {
-    super();
+  constructor(game, eventImpl = null) {
+    super(eventImpl);
 
     this.game = game;
     this.isCheck = false;
@@ -122,10 +122,10 @@ export class UCIGameClient extends EventIfc {
     });
   }
 
-  static create() {
+  static create(eventImpl = null) {
     let 
-      game = Game.create(),
-      gameClient = new UCIGameClient(game);
+      game = Game.create(eventImpl),
+      gameClient = new UCIGameClient(game, eventImpl);
 
     updateGameClient(gameClient);
 
