@@ -7,15 +7,15 @@ import { EventEmitter } from 'events';
 
 
 export class EventIfc {
-    constructor (eventImpl = null) {
+    constructor (EventImpl = null) {
         this.events = null;
 
-        if ((eventImpl === null) && (EventEmitter)) {
-            eventImpl = EventEmitter;
+        if ((EventImpl === null) && (EventEmitter)) {
+            EventImpl = EventEmitter;
         }
 
-        if (eventImpl !== null) {
-            this.events = new EventEmitter();
+        if (EventImpl !== null) {
+            this.events = new EventImpl();
         }
     }
 
@@ -25,9 +25,9 @@ export class EventIfc {
         }
     }
 
-    emit (event, delay = null, period = null) {
+    emit (event, data) {
         if (this.events) {
-            this.events.emit(event, delay, period);
+            this.events.emit(event, data);
         }
     }
 }
